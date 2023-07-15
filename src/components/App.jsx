@@ -1,43 +1,47 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import FeedbackOptions from './FeedbackOptions';
 import Statistics from './statistics/statistics';
 import css from './App.module.css';
 
- class App extends Component {
-   state = {
-     good: 0,
-     neutral: 0,
-     bad: 0,
-   };
+ function App (){
+   const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+   const [bad, setBad] = useState(0);
+   const bottomNames = { good, neutral, bad, };
 
-   onLeaveFeedback = (name) => {
-     this.setState(prevState => {
-       return {
-         [name]: prevState[name] +1,
-       };
-     });
+   const onLeaveFeedback = (name) => {
+    if (name === 'good') {
+      return setGood(good +1);
+     }
+
+     if (name === 'neutral') {
+     return setNeutral(neutral +1);
+     }
+        if (name === 'bad') {
+          return setBad(bad +1);
+        }
    }
+   
 
-   render() {
+
      return (
        <>
          <section className={css.section}>
            <div className={css.container}>
              <h1>Please leave feedback</h1>
              <FeedbackOptions
-               valuesArray={this.state}
-               onLeaveFeedback={this.onLeaveFeedback}
+               valuesArray={bottomNames}
+               onLeaveFeedback={onLeaveFeedback}
              />
              <Statistics
-               good={this.state.good}
-               neutral={this.state.neutral}
-               bad={this.state.bad}
+               good={good}
+               neutral={neutral}
+               bad={bad}
              />
            </div>
          </section>
        </>
      );
    }
- };
 
 export default App;

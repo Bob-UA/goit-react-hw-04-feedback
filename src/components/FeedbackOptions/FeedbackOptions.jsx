@@ -1,14 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import css from './FeedbackOptions.module.css';
 
 
 
-class FeedbackOptions extends React.Component {
-
-  render() {
-     const ar = Object.keys(this.props.valuesArray);
-    return (
+const FeedbackOptions = ({ valuesArray, onLeaveFeedback}) => {
+  const ar = Object.keys(valuesArray);
+  return (
     <div>
       <ul className={css.listBtn}>
         {ar.map(name => {
@@ -17,7 +14,7 @@ class FeedbackOptions extends React.Component {
               <button
                 type="button"
                 className={css.btn}
-                onClick={() => this.props.onLeaveFeedback(name)}
+                onClick={() => onLeaveFeedback(name)}
                 name={name}
               >
                 {name}
@@ -28,7 +25,7 @@ class FeedbackOptions extends React.Component {
       </ul>
       <h2 className={css.title}>Statistics:</h2>
     </div>
-  )};
+  );
 };
 
 
