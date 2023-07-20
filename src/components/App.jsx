@@ -13,7 +13,6 @@ import css from './App.module.css';
     if (name === 'good') {
       return setGood(good +1);
      }
-
      if (name === 'neutral') {
      return setNeutral(neutral +1);
      }
